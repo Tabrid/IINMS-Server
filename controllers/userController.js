@@ -85,11 +85,10 @@ export const deleteUser = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   const { id } = req.params;
-
   try {
     const user = await User.findByPk(id, {
-      attributes: { exclude: ["password"] }, // Exclude the password field
-      include: [Farmer], // Include related Farmer data
+      attributes: { exclude: ["password"] },
+      include: [Farmer],
     });
     if (!user) {
       return res.status(404).json({ error: "User not found" });

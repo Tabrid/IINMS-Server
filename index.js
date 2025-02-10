@@ -1,6 +1,7 @@
 import express from 'express';
+import path from "path";
 import bodyParser from 'body-parser';
-import cors from 'cors'; 
+import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import sequelize from './config/db.js';
 import roleRoutes from "./routes/roleRoutes.js";
@@ -22,9 +23,9 @@ const PORT = 5000;
 // Middleware
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://localhost:5173', 
- }));
- 
+    origin: '*',
+}));
+
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/roles', roleRoutes);
@@ -40,6 +41,9 @@ app.use("/api/csas", csaRoutes);
 app.use("/api/farmers", farmerRoutes);
 app.use("/api/saaOForms", saaOFormRoutes);
 app.use("/api/feedback", feedbackRoutes);
+app.get("/", (req, res) => {
+    res.send("Hello to IINMS API");
+});
 // Start server and sync database
 sequelize.sync()
     .then(() => {

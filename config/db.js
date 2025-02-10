@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 // Database configuration
-const sequelize = new Sequelize('brri-server', 'root', 'riyadh', {
+const sequelize = new Sequelize('brri-server', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   logging: console.log,
